@@ -1,0 +1,423 @@
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+  }
+
+  .hd {
+    background-color: #c8102e;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    margin-top: 5%;
+  }
+
+  .h-divider {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 1px;
+    width: 100%;
+    border-top: 1px solid gray;
+  }
+
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;
+    color: black;
+    justify-content: center;
+    margin: 4%;
+  }
+
+  .attribute-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s, opacity 0.5s;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 4%;
+  }
+
+  .attribute-card:hover {
+    transform: scale(1.05);
+  }
+
+  .card-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #c8102e;
+    margin: 4%;
+  }
+
+  .card-content {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .card-description {
+    font-size: 14px;
+    color: #666;
+  }
+</style>
+
+<script>
+  // Intersection Observer for fade-in effect on scroll
+  const cards = document.querySelectorAll('.attribute-card');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  });
+  cards.forEach(card => observer.observe(card));
+</script>
+
+{% extends 'base.html' %}
+{% load static %}
+{% block maincontent %}
+<!--inner banner-->
+{% if messages %}
+<div class="alert alert-success text-center" id="alert-msg">
+  {% for message in messages %}
+  <h3>{{ message }}</h3>
+  {% endfor %}
+</div>
+{% endif %}
+
+<div class="inner-banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h1>CVD Prediction</h1>
+      </div>
+      <div class="col-md-5">
+        <ol class="breadcrumb">
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li class="active">CVD</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<!--inner banner End-->
+
+<!--Main Content Start-->
+<div class="main-content padding-0">
+  <section class="appointment-form">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6"><img src="{% static 'heart/images/pref.jpg' %}"
+            style="height: 85vh; width: 75vh; margin-top: 7vh;" alt=""></div>
+        <!-- style="height: 44vh; width: 44vh;" -->
+        <div class="col-md-6">
+          <form action="{% url 'cvd' %}" method="post">
+            {% csrf_token %}
+            <!-- {{ form.as_p }} -->
+            <div class="app-form">
+              <div class="col-md-6 col-sm-6">
+                <h5 for="id_input1" style="margin: 3vh; margin-left: 0;">Age</h5>
+                <td class="form-control" placeholder="Age *" type="text" name="name">
+                  {{ form.age }}
+                </td>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <h5 style="margin: 3vh; margin-left: 0;">Resting BP</h5>
+                <td class="form-control" placeholder="Blood Pressure *" type="text" name="name">
+                  {{ form.trestbps }}
+                </td>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <h5 style="margin: 2vh; margin-left: 0;">Gender</h5>
+                <td class="form-control" placeholder="Gender *" type="text" name="phone">
+                  {{ form.sex }}
+                </td>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <h5 style="margin: 2vh; margin-left: 0;">Chest Pain</h5>
+                <td class="form-control" placeholder="Chest Pain Type *" type="text" name="email">
+                  {{ form.cp }}
+                </td>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <h5 style="margin: 2vh; margin-left: 0;">FBS above 120mg/dl</h5>
+                <td class="form-control" placeholder="Fasting Blood Sugar *" type="text" name="email">
+                  {{ form.fbs }}
+                </td>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <h5 style="margin: 2vh; margin-left: 0;">Exercise Angina</h5>
+                <td class="form-control" placeholder="Exercise Angina *" type="text" name="email">
+                  {{ form.exang }}
+                </td>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <h5 style="margin: 3vh; margin-left: 0; margin-top: 1vh;">Resting ECG</h5>
+                <td class="form-control" placeholder="Electrocardiographic *" type="text" name="name">
+                  {{ form.restecg }}
+                </td>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <h5 style="margin: 3vh; margin-left: 0; margin-top: 1vh;">Slope</h5>
+                <td class="form-control" placeholder="Electrocardiographic *" type="text" name="name">
+                  {{ form.slope }}
+                </td>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <h5 style="margin: 3vh; margin-left: 0;">Cholesterol</h5>
+                <td class="form-control" placeholder="Cholesterol *" type="text" name="phone">
+                  {{ form.chol }}
+                </td>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <h5 style="margin: 3vh; margin-left: 0;">Max Heart Rate</h5>
+                <td class="form-control" placeholder="Max Heart Rate *" type="text" name="phone">
+                  {{ form.thalach }}
+                </td>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <h5 style="margin: 3vh; margin-left: 0;">Oldpeak</h5>
+                <td class="form-control" placeholder="Oldpeak *" type="text" name="name">
+                  {{ form.oldpeak }}
+                </td>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <h5 style="margin: 3vh; margin-left: 0;">BMI</h5>
+                <td class="form-control" placeholder="Oldpeak *" type="text" name="name">
+                  {{ form.bmi }}
+                </td>
+              </div>
+              <div class="col-md-12 text-center" style="margin: 3vh; margin-bottom: 5%;">
+                <!-- <textarea placeholder="Extra Note" name="note"></textarea> -->
+                <input value="prediction" type="submit">
+                {% if result %}
+                <h2 style="margin: 2vh;">Prediction Result : </h2>
+                <h2 style="margin-bottom: 4%; margin: 2vh; color: black;">{{ result }}</h2>
+                <br>
+                <p>Get detailed result <a href="{% url 'rst' %}"><strong>Here</strong></a></p>
+                {% endif %}
+                <div>{% if chart_url %}
+                  <img src="{% static chart_url %}" alt="Attribute Pie Chart">
+                  {% else %}
+                  <p>No chart available.</p>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="h-divider"> </div>
+
+      <div class="col-md-12 row">
+        <div>
+          <header class="hd">
+            <h1>Heart Disease Prediction</h1>
+            <h2>How to Obtain Attribute Values</h2>
+          </header>
+        </div>
+        <div class="card-container">
+          <div class="attribute-card">
+            <h3 class="card-title">Age</h3>
+            <div class="card-content card-discription">
+              <p>This is the age of the patient in years.</p>
+              <p><strong>How to measure:</strong> Enter your current age in years.</p>
+            </div>
+          </div>
+          <div class="attribute-card">
+            <h3 class="card-title">Resting Blood Pressure (BP)</h3>
+            <div class="card-content card-discription">
+              <p>The blood pressure measured while resting, usually in mmHg.</p>
+              <p><strong>Test Required:</strong> Blood Pressure Test</p>
+              <p><strong>Where to get:</strong> Many pharmacies and small clinics offer blood pressure testing. You can
+                also
+                measure it with a home blood pressure monitor.</p>
+            </div>
+          </div>
+          <div class="attribute-card">
+            <h3 class="card-title">Gender</h3>
+            <div class="card-content card-discription">
+              <p>Patient's gender.</p>
+              <p><strong>Options:</strong> Select "Male" or "Female."</p>
+            </div>
+          </div>
+          <div class="attribute-card">
+            <h3 class="card-title">Chest Pain Type</h3>
+            <div class="card-content card-discription">
+              <p>Describes the type of chest pain you may experience:</p>
+              <ul>
+                <li>Typical Angina: Pain during physical activity or stress</li>
+                <li>Atypical Angina: Unusual or inconsistent chest discomfort</li>
+                <li>Non-Anginal Pain: Not related to heart issues</li>
+                <li>Asymptomatic: No chest pain</li>
+              </ul>
+              <p><strong>Tip:</strong> Use your own observations or consult your medical history to classify chest pain
+                type.</p>
+            </div>
+          </div>
+          <div class="attribute-card">
+            <h3 class="card-title">Fasting Blood Sugar (FBS) above 120 mg/dL</h3>
+            <div class="card-content card-discription">
+              <p>Indicates whether fasting blood sugar is above 120 mg/dL.</p>
+              <p><strong>Test Required:</strong> Fasting Blood Sugar Test</p>
+              <p><strong>Where to get:</strong> Available at most clinics or labs. Home glucose meters can also be used
+                after 8 hours of fasting.</p>
+            </div>
+          </div>
+          <div class="attribute-card">
+            <h3 class="card-title">Resting Electrocardiographic (ECG) Results</h3>
+            <div class="card-content card-discription">
+              <p>Measures the heart's electrical activity while resting.</p>
+              <p><strong>Test Required:</strong> Resting ECG Test</p>
+              <p><strong>Where to get:</strong> Some larger clinics have portable ECG devices, and some pharmacies may
+                offer
+                ECG tests.</p>
+            </div>
+          </div>
+          <div class="attribute-card">
+            <h3 class="card-title">Maximum Heart Rate Achieved</h3>
+            <div class="card-content card-discription">
+              <p>The highest heart rate reached during physical activity.</p>
+              <p><strong>Test Required:</strong> Heart Rate Monitor during Exercise</p>
+              <p><strong>Where to get:</strong> Many fitness centers or home exercise devices can track maximum heart
+                rate
+                during a workout.</p>
+            </div>
+          </div>
+          <div class="attribute-card">
+            <h3 class="card-title">Exercise-Induced Angina</h3>
+            <div class="card-content card-discription">
+              <p>Indicates whether you experience chest pain or discomfort during exercise.</p>
+              <p><strong>Self-observation:</strong> Note if you have chest pain during physical activities or intense
+                workouts.</p>
+            </div>
+          </div>
+          <div class="attribute-card">
+            <h3 class="card-title">ST Depression (Oldpeak)</h3>
+            <div class="card-content card-discription">
+              <p>Changes in the ST segment, measured in an ECG, relative to rest.</p>
+              <p><strong>Test Required:</strong> ECG Test</p>
+              <p><strong>Where to get:</strong> Some local clinics or diagnostic centers may offer ECG testing.</p>
+            </div>
+          </div>
+          <div class="attribute-card">
+            <h3 class="card-title">Slope of ST Segment</h3>
+            <div class="card-content card-discription">
+              <p>The slope of the ST segment during exercise.</p>
+              <p><strong>Test Required:</strong> Exercise ECG Test</p>
+              <p><strong>Where to get:</strong> Available at some clinics with stress test facilities.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-bottom: 6vh;">
+        <div class="col-md-12">
+          <div class="team-exp">
+            <div class="sectio-title-2">
+              <h2>Disclaimer !</h2>
+            </div>
+            <h5>The heart disease prediction tool provided on this site is for informational purposes only and does not
+              constitute medical advice. The tool uses algorithms that estimate risk based on the information provided
+              by the user, and
+              the results should not be considered conclusive. For any concerns about heart health or if you are
+              experiencing symptoms, please consult a licensed healthcare provider. Additionally, our online appointment
+              feature offers access to professional care for further evaluation and management.</h5>
+          </div>
+        </div>
+      </div>
+      <!--FAQ Start-->
+      <div class="col-md-6">
+        <div class="home-faq">
+          <div class="sectio-title-2"> <strong>Feel Free For</strong>
+            <h2>Any FAQ’s</h2>
+          </div>
+          <div class="faqs">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                  <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion"
+                      href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> What is the heart disease
+                      prediction tool? </a> </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                  <div class="panel-body"> The heart disease prediction tool is an online feature that uses algorithms
+                    to estimate a user's risk of heart disease based on personal health data, including age, gender,
+                    blood pressure, cholesterol levels, lifestyle factors, and medical history. It provides a risk
+                    score, which helps users assess their cardiovascular health. </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse"
+                      data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      How accurate is the heart disease prediction tool? </a> </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body"> The tool provides an estimate based on well-established health data and
+                    algorithms. However, it is not 100% accurate and should not replace a medical consultation. It is
+                    designed to give users insights into potential heart disease risks and encourage them to seek
+                    professional medical advice if necessary. </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingThree">
+                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse"
+                      data-parent="#accordion" href="#collapseThree" aria-expanded="false"
+                      aria-controls="collapseThree"> What information do I need to use the heart disease prediction
+                      tool? </a> </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                  <div class="panel-body"> To get an accurate prediction, you will need to provide basic personal
+                    details such as age and gender, along with specific health data like cholesterol levels, blood
+                    pressure, blood sugar levels, and lifestyle habits like smoking, exercise, and diet. </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingThree">
+                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse"
+                      data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                      Can the tool diagnose heart disease? </a> </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                  <div class="panel-body"> No, the tool cannot diagnose heart disease. It only provides a risk estimate
+                    based on the data you enter. For an official diagnosis, it is essential to visit a healthcare
+                    provider who can conduct thorough tests and provide professional medical advice. </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingFour">
+                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse"
+                      data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                      How do I know when to use the heart disease prediction tool? </a>
+                  </h4>
+                </div>
+                <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                  <div class="panel-body"> You should consider using the tool if you have risk factors for heart
+                    disease, such as a family history of heart problems, high blood pressure, high cholesterol,
+                    diabetes, or if you are a smoker or lead a sedentary lifestyle. Regular assessments can help you
+                    take early preventive actions. </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-6">
+        <div class="welcome-img" style="margin-bottom: 10vh;"> <img src="{% static 'heart/images/fqimg.png' %}"
+            style="margin-bottom: 5vh; height: 78vh; width: 76vh; align-items: center;" alt=""> </div>
+      </div>
+      <!--FAQ End-->
+    </div>
+  </section>
+</div>
+<!--Main Content End-->
+{% endblock maincontent %}

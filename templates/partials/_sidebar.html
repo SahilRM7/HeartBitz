@@ -1,0 +1,53 @@
+<style>
+  .username {
+    padding: 3%;
+  }
+
+  .username:hover {
+    background-color: rgb(61, 60, 60);
+    color: rgb(246, 248, 250);
+  }
+
+  .log:hover {
+    color: red;
+  }
+
+  .reg {
+    padding: 5%;
+  }
+
+  .lg:hover {
+    color: rgb(38, 255, 34);
+  }
+</style>
+{% load static %}
+<div id="sidebar-wrapper">
+  <a id="menu-close" href="#" class="close toggle"><i class="fa fa-times" aria-hidden="true"></i></a>
+  <ul class="sidebar-nav">
+    <li class="sidebar-brand" style="background-color: white"> <a href=""><img
+          src="{% static 'heart/images/logof.png' %}" width="200vh" height="70vh" alt=""></a> </li>
+    <li><a href="{% url 'index' %}">Home</a></li>
+    <li><a href="{% url 'services' %}">Services</a></li>
+    <li><a href="{% url 'doctors' %}">Doctors</a></li>
+    {% comment %} <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+        aria-haspopup="true" aria-expanded="false">Features <span class="fa fa-angle-down"></span></a>
+      <ul class="dropdown-menu">
+        <li><a href="{% url 'gallery' %}">Gallery</a></li>
+        <li><a href="{% url 'faqs' %}">Faqs</a></li>
+      </ul>
+    </li> {% endcomment %}
+    <li><a href="{% url 'cvd' %}">CVD Prediction</a></li>
+    <li><a href="{% url 'appointment' %}">Appointment</a></li>
+    <li><a href="{% url 'faqs' %}">Faqs</a></li>
+    <li><a href="{% url 'contact' %}">Contacts</a></li>
+    <div>
+      {% comment %} {% if user.is_authenticated %}
+      <p class="username">Welcome,<strong> {{ user.username }} | </strong><a href="{% url 'logout' %}"
+          class="log">Logout</a></p>
+      {% else %}
+      <p class="reg"><strong><a href="{% url 'login' %}" class="lg">Login</a> | <a href="{% url 'register' %}"
+            class="lg">Register</a></strong></p>
+      {% endif %} {% endcomment %}
+    </div>
+  </ul>
+</div>
