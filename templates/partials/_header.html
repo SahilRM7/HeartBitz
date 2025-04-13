@@ -38,27 +38,11 @@
                 <li><a href="{% url 'index' %}">Home</a></li>
                 </li>
                 <li><a href="{% url 'services' %}">Services</a></li>
-                <li><a href="{% url 'doctors' %}">Doctors</a></li>
-                <li><a href="{% url 'faqs' %}">Faqs</a></li>
-                {% comment %} <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                    role="button" aria-haspopup="true" aria-expanded="false">Features <span
-                      class="fa fa-angle-down"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="{% url 'gallery' %}">Gallery</a></li>
-                    <li><a href="{% url 'faqs' %}">Faqs</a></li>
-                  </ul>
-                </li> {% endcomment %}
-                <li><a href="{% url 'contact' %}">Contact</a></li>
-                {% comment %} {% if user.is_authenticated %}
-                <li><a href="{% url 'logout' %}">Logout</a></li>
-                {% else %}
-                <li><a href="{% url 'login' %}">Login</a></li>
-                {% endif %} {% endcomment %}
+                <li><a href="{% url 'appointment' %}">Appointment</a></li>
+                <li><a href="{% url 'cvd' %}">CVD Prediction</a></li>
               </ul>
 
               <ul class="nav navbar-nav navbar-right">
-                <!-- <li><a class="appoint" href="{% url 'cvd' %}">CVD Prediction</a></li>
-                <li><a class="appoint" href="{% url 'appointment' %}">Appointment</a></li> -->
                 <li> <a id="menu-toggle" href="#" class="toggle"><img src="{% static 'heart/images/bars.png' %}"
                       alt=""></a> </li>
               </ul>

@@ -39,6 +39,61 @@
   .color-box {
     border-radius: 4px;
   }
+
+  .bg-light {
+    background-color: #f8f9fa;
+}
+
+.rounded-lg {
+    border-radius: 12px;
+}
+
+.p-4 {
+    padding: 16px;
+}
+
+.mb-5 {
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 18px;
+    color: #555;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+strong {
+    color: #222;
+}
+
+.ant {
+    display: block;
+    text-align: center;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 15px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    transition: 0.3s ease-in-out;
+}
+
+
+
 </style>
 
 <body>
@@ -87,7 +142,7 @@
         <div class="col-md-5">
           <ol class="breadcrumb">
             <li><a href="{% url 'index' %}">Home</a></li>
-            <li class="active">Result</li>
+            <li class="active">Eye_Result</li>
           </ol>
         </div>
       </div>
@@ -97,67 +152,11 @@
   <!-- Main Content Start -->
   <!-- Inside the Visualization Section -->
   <section class="bg-light rounded-lg p-4 mb-5">
-    {% if result %}
-    <h2 style="padding-left: 5%; padding-top: 2%;">Prediction Result : </h2>
-    <h2 style="padding-left: 10%; padding-bottom: 2%;">{{ result }}</h2>
-    {% endif %}
-    <!-- <h3 class="text-center mb-4 text-secondary" style="padding-bottom: 2%;">Health Analysis Visualizations</h3> -->
-    
-    {% if recommendations %}
-    <div class="card mb-4 shadow-sm" style="padding-left: 3%; width: 90%; padding-bottom: 1%;">
-      <div class="card-header bg-success text-white" style="padding: 0.5%;">
-        <h5 class="mb-0">Personalized Recommendations</h5>
-      </div>
-      <div class="card-body">
-      <ul class="list-group">
-        {% for recommendation in recommendations %}
-        <li class="list-group-item">{{ recommendation }}</li>
-        {% endfor %}
-      </ul>
-      </div>
-    </div>
-    {% endif %}
-    <!-- Risk Level -->
-    <div class="card mb-4 shadow-sm" style="padding-left: 3%; width: 90%; padding-bottom: 1%;">
-      <div class="card-header bg-primary text-white" style="padding: 0.5%;">
-        <h5 class="mb-0">Risk Level Indicator</h5>
-      </div>
-      <div class="card-body">
-        <img src="{{ chart_urls.risk_gauge }}" alt="Risk Gauge" class="img-fluid rounded mx-auto d-block"
-          style="max-height: 300px;">
-      </div>
-    </div>
-
-    <div class="card mb-4 shadow-sm" style="padding-left: 3%; width: 90%; padding-bottom: 1%;">
-      <div class="card-header bg-primary text-white" style="padding: 0.5%;">
-        <h5 class="mb-0">Cholesterol &amp; BP Analysis</h5>
-      </div>
-      <div class="card-body">
-        <img src="{{ chart_urls.chol_bp_chart }}" alt="Risk Gauge" class="img-fluid rounded mx-auto d-block"
-          style="max-height: 360px;">
-      </div>
-    </div>
-
-    <div class="card mb-4 shadow-sm" style="padding-left: 3%; width: 90%; padding-bottom: 1%;">
-      <div class="card-header bg-primary text-white" style="padding: 0.5%;">
-        <h5 class="mb-0">Comparison with Normal Values</h5>
-      </div>
-      <div class="card-body">
-        <img src="{{ chart_urls.comparison_bar }}" alt="Risk Gauge" class="img-fluid rounded mx-auto d-block"
-          style="max-height: 360px;">
-      </div>
-    </div>
-
-    <div class="card mb-4 shadow-sm" style="padding-left: 3%; width: 90%; padding-bottom: 1%;">
-      <div class="card-header bg-primary text-white" style="padding: 0.5%;">
-        <h5 class="mb-0">Heart Rate vs Oldpeak</h5>
-      </div>
-      <div class="card-body">
-        <img src="{{ chart_urls.hr_oldpeak_chart }}" alt="Risk Gauge" class="img-fluid rounded mx-auto d-block"
-          style="max-height: 400px;">
-      </div>
-    </div>
-
+    <h2>Prediction Result</h2>
+    <p><strong>Predicted Condition:</strong> {{ label }}</p>
+    <p><strong>Confidence:</strong> {{ confidence|floatformat:2 }}%</p>
+    <p><strong>Heart Disease Probability:</strong> {{ heart_disease_probability }}%</p>
+    <a class="ant" href="{% url 'cvd' %}">Another image</a>
   </section>
 
 

@@ -14,10 +14,10 @@
           <div class="widget">
             <h3 style="color: #090909">Our Services</h3>
             <ul>
-              {% comment %} {% for service in services|slice:':8' %}
+              {% for service in services|slice:':8' %}
               <li><a href="{% url 'service_details' service.id %}"><i class="fa fa-arrow-right"></i>
                   {{service.title }}</a></li>
-              {% endfor %} {% endcomment %}
+              {% endfor %}
             </ul>
           </div>
         </div>
@@ -25,10 +25,10 @@
           <div class="widget">
             <h3 style="color: #090909">Expert Doctors</h3>
             <ul>
-              {% comment %} {% for doctor in doctors|slice:':8' %}
+              {% for doctor in doctors|slice:':8' %}
               <li><a href="{% url 'doctor_details' doctor.id %}"><i class="fa fa-arrow-right"></i> {{ doctor.name }}</a>
               </li>
-              {% endfor %} {% endcomment %}
+              {% endfor %}
             </ul>
           </div>
         </div>
@@ -55,13 +55,6 @@
   <div class="footer-cr">
     <div class="container">
       <div class="row">
-        {% comment %} <div class="col-md-6">
-          <div class="footer-social"> <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="#"><i
-                class="fa fa-facebook" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-google-plus"
-                aria-hidden="true"></i></a> <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a> <a
-              href="#"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
-          </div>
-        </div> {% endcomment %}
         <div class="col-md-6">
           <p><strong>HeartBitz</strong> © {% now 'Y' %}</p>
         </div>

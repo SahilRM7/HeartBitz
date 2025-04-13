@@ -15,7 +15,7 @@
               </div>
               <p> Welcome to our e-healthcare heart service, where we prioritize your heart health with cutting-edge technology and personalized care. Our advanced heart disease prediction system is designed to offer you crucial insights and proactive management for a healthier future. Additionally, our convenient online appointment system allows you to easily schedule consultations with our expert cardiologists, ensuring you receive timely and tailored care without any hassle. Explore our comprehensive services and take the first step towards a healthier heart with the ease and support you deserve. Your journey to better heart health starts here.</p>
               <p>We offer cutting-edge solutions with our advanced heart disease prediction system, designed to provide you with personalized insights and proactive care.</p>
-              <strong class="signature">Prof. L. J. Deokate</strong>
+              <strong class="signature">Prof. S. S. Kulkarni</strong>
               <h6 class="designation">Guide HeartBitz E-HealthCare</h6>
             </div>
           </div>
@@ -73,7 +73,8 @@
           <div class="service-style-1">
             <div class="row">
               <!--service box start-->
-              {% comment %} {% for service in services|slice:':4' %}
+              {% comment %}
+              {% for service in services|slice:':4' %}
               <div class="col-md-3 col-sm-3">
                 <div class="service-box">
                   <div class="ser-thumb"> <a href="{% url 'service_details' service.id %}" class="view"><i
@@ -86,7 +87,8 @@
                   </div>
                 </div>
               </div>
-              {% endfor %} {% endcomment %}
+              {% endfor %}
+              {% endcomment %}
               <!--service box End-->
             </div>
           </div>
@@ -224,7 +226,7 @@
         </div>
       </div>
       <div class="row">
-        {% comment %} {% for doctor in experts|slice:':4' %}
+        {% for doctor in experts|slice:':4' %}
         <div class="col-md-3 col-sm-6">
           <div class="team-box mb50">
             <div class="team-thumb"> <a href="{% url 'doctor_details' doctor.id %}" class="view"><i class="fa fa-Heart"
@@ -248,7 +250,7 @@
             </div>
           </div>
         </div>
-        {% endfor %} {% endcomment %}
+        {% endfor %}
       </div>
     </div>
   </section>

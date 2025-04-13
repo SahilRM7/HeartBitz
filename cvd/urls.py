@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     path('cvd/', views.predict, name='cvd'),
-    path('result/', views.attribute_pie_chart, name='rst')
+    path('result/', views.risk_gauge_chart, name='rst'),
 ]
